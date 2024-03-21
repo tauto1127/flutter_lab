@@ -5,6 +5,7 @@ class VerticalList extends MultiChildRenderObjectWidget {
   VerticalList({
     super.key,
     required List<Widget> children,
+    Padding padding = const Padding(padding: EdgeInsets.all(8)),
   }) : super(children: children);
 
   @override
@@ -33,13 +34,13 @@ class RenderVerticalList extends RenderBox
   @override
   void performLayout() {
     size = constraints.biggest;
-
     RenderBox? child = firstChild;
     double verticalOffset = 0;
+    double horizontalOffset = 30;
     while (child != null) {
       final childParentData = child.parentData as VerticalListParentData;
       child.layout(BoxConstraints(maxWidth: size.width), parentUsesSize: true);
-      childParentData.offset = Offset(0, verticalOffset);
+      childParentData.offset = Offset(horizontalOffset, verticalOffset);
       verticalOffset += child.size.height;
       print("描画します：" + child.toString());
       child = childParentData.nextSibling;
@@ -58,3 +59,15 @@ class RenderVerticalList extends RenderBox
 }
 
 class VerticalListParentData extends ContainerBoxParentData<RenderBox> {}
+
+class ShowMyColumn extends StatelessWidget {
+  const ShowMyColumn({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return VerticalList(children: [
+      Text("aiueo"),
+      Text("kakikukeko"),
+    ]);
+  }
+}
