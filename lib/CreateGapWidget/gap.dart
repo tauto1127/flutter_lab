@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
+///ref
+///https://getpocket.com/ja/read/3487508742
+
 class _RenderGap extends RenderBox {
   _RenderGap({
     double? mainAxisExtent,
@@ -68,7 +71,7 @@ class GapTest extends StatelessWidget {
               Text('This is testing the Gap widget'),
               Gap(30),
               Text('Notice the gap between me and the text above me, its vertical'),
-              Gap(30),
+              Gap(90),
               Text('Now lets look at it working horizontally'),
               Gap(16),
               Row(
