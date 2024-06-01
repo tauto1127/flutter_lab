@@ -1,13 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/CreateGapWidget/gap.dart';
-import 'package:flutter_lab/access_parent_from_child.dart';
-import 'package:flutter_lab/expand.dart';
-import 'package:flutter_lab/grid_view_test.dart';
-import 'package:flutter_lab/jisaku_column.dart';
-import 'package:flutter_lab/joutaikanri/counter.dart';
-import 'package:flutter_lab/joutaikanri/inherited_counter.dart';
 
 void main() {
-  runApp(
-      Directionality(textDirection: TextDirection.ltr, child: GapTest()));
+  runApp(MaterialApp(home: CounterLabel()));
+}
+
+const int waitSeconds = 1;
+
+class CounterLabel extends StatefulWidget {
+  CounterLabel({super.key});
+  int count = 0;
+
+  @override
+  State<CounterLabel> createState() => _CounterLabelState();
+}
+
+class _CounterLabelState extends State<CounterLabel> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+      children: [
+        Text(
+          widget.count.toString(),
+          style: const TextStyle(fontSize: 52),
+        ),
+        TextButton(
+          child: const Text("カウントスタート"),
+          onPressed: () => startCount(),
+        )
+      ],
+    ));
+  }
+
+  Future<void> startCount() async {
+    for (int i = 0; i <= 10; i++) {
+      await count(i);
+    }
+  }
+
+  Future<void> count(int i) async {
+    await Future.delayed(const Duration(seconds: waitSeconds));
+    setState(() {
+      widget.count += i;
+    });
+  }
 }
