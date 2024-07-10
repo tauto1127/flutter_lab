@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/future_test_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(MaterialApp(home: CounterLabel()));
+  runApp(ProviderScope(child: MaterialApp(home: FutureTest())));
 }
 
 const int waitSeconds = 1;
